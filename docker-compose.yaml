@@ -1,0 +1,21 @@
+version: "3"
+services:
+  mysql:
+    image: mysql:8
+    container_name: tomara_mysql
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: dzalian_saidumloa
+      MYSQL_DATABASE: tomara
+      MYSQL_USER: tomariani
+      MYSQL_PASSWORD: saidumloa
+      MYSQL_DATABASE_CHARSET: utf8mb4
+      MYSQL_DATABASE_COLLATION: utf8mb4_unicode_ci
+    volumes:
+      - ./data/sql/dev/:/docker-entrypoint-initdb.d/
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10k"
+        max-file: "10"
