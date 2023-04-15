@@ -6,6 +6,7 @@ services:
     ports:
       - 3306:3306
     environment:
+      LANG: C.UTF-8
       MYSQL_ROOT_PASSWORD: dzalian_saidumloa
       MYSQL_DATABASE: tomara
       MYSQL_USER: tomariani
