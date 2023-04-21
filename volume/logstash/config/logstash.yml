@@ -1,0 +1,4 @@
+http.host: "localhost"
+xpack.monitoring.enabled: true
+xpack.monitoring.elasticsearch.hosts: ["http://elasticsearch:9200"]
+log.level: info

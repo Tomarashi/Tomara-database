@@ -42,3 +42,21 @@ services:
       options:
         max-size: "10k"
         max-file: "10"
+  logstash:
+    build:
+      context: .
+      dockerfile: ./dockers/logstash/Dockerfile
+    container_name: tomara_logstash
+    depends_on:
+      - mysql
+      - elasticsearch
+    volumes:
+      - ./volume/logstash/pipeline/:/usr/share/logstash/pipeline/
+      - ./volume/logstash/config/queries/:/usr/share/logstash/config/queries/
+      - ./volume/logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml
+      - ./volume/logstash/config/pipelines.yml:/usr/share/logstash/config/pipelines.yml
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10k"
+        max-file: "10"
