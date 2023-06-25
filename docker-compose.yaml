@@ -15,11 +15,6 @@ services:
       MYSQL_DATABASE_COLLATION: utf8mb4_unicode_ci
     volumes:
       - ./data/sql/dev/:/docker-entrypoint-initdb.d/
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "10k"
-        max-file: "10"
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:8.7.0
     container_name: tomara_elasticsearch
@@ -30,18 +25,13 @@ services:
       - xpack.security.enabled=false
       - discovery.type=single-node
       - bootstrap.memory_lock=true
-      - "ES_JAVA_OPTS=-Xms256m -Xmx256m"
+      - "ES_JAVA_OPTS=-Xms256m -Xmx256m -server"
     volumes:
       - ./volume/elasticsearch/:/usr/share/elasticsearch/data
     ulimits:
       memlock:
         soft: -1
         hard: -1
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "10k"
-        max-file: "10"
   logstash:
     build:
       context: .
@@ -55,8 +45,3 @@ services:
       - ./volume/logstash/config/queries/:/usr/share/logstash/config/queries/
       - ./volume/logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml
       - ./volume/logstash/config/pipelines.yml:/usr/share/logstash/config/pipelines.yml
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "10k"
-        max-file: "10"
