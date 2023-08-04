@@ -14,7 +14,7 @@ services:
       MYSQL_DATABASE_CHARSET: utf8mb4
       MYSQL_DATABASE_COLLATION: utf8mb4_unicode_ci
     volumes:
-      - ./data/sql/dev/:/docker-entrypoint-initdb.d/
+      - ./data/sql/prod/v0/:/docker-entrypoint-initdb.d/
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:8.7.0
     container_name: tomara_elasticsearch
